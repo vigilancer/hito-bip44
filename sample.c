@@ -27,7 +27,8 @@ main(int argc, char** argv)
   const size_t buflen = 128;
   char buf[buflen + 1];
 
-  hdnode_from_seed2(seed_test2_text, seed_test2, path, buf, buflen);
+  bip44_path_to_address(seed_test2, path, buf, buflen);
+
 
   printf("{} %s\n", buf);
 }
