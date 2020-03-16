@@ -23,6 +23,8 @@ things that are not covered by publicly available static test vectors
 
 ### links
 
-[BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
-[BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
-[BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
+[BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)  
+
+[BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)  
+
+[BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)  
