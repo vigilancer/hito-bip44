@@ -31,4 +31,22 @@ main(int argc, char** argv)
 
 
   printf("{} %s\n", buf);
+
+  printf("you can generate bunch of addresses for this seed: https://iancoleman.io/bip39/\n");
+
+  printf("-===============\n");
+
+  char *mnemonic = "abandon abandon abandon abandon abandon abandon abandon "
+                   "abandon abandon abandon abandon about";
+  uint8_t seed[64];
+  bip44_mnemonic_to_seed(mnemonic, seed);
+
+  printf("mnemonic: %s\n", mnemonic);
+  printf("seed: ");
+  int n;
+  for(n=0; n< SHA512_DIGEST_LENGTH; n++) {
+    printf("%02x", seed[n]);
+  }
+  putchar('\n');
+
 }

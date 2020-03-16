@@ -98,3 +98,7 @@ void bip44_path_to_address(uint8_t *seed, Bip44HDPath path,
   ecdsa_get_address(node.public_key, addr_version, HASHER_SHA2_RIPEMD,
                     HASHER_SHA2D, buf, buflen);
 }
+
+void bip44_mnemonic_to_seed(char * mnemonic, uint8_t seed_out[64]) {
+  mnemonic_to_seed(mnemonic, "", seed_out, NULL);
+}
