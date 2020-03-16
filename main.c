@@ -1,5 +1,3 @@
-//usr/bin/clang "$0" && exec ./a.out "$@"; exit
-
 #include "bip32.h"
 #include "bip39.h"
 #include "curves.h"

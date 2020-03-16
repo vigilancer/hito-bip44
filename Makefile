@@ -41,7 +41,8 @@ bip44.o:
 
 clean:
 	rm -f \
-		libbip44.so \
+		*.so \
+		*.o \
 		./sample
 	rm -rf ./tests
 
