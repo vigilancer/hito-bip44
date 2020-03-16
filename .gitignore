@@ -1,2 +1,8 @@
 extra/
 a.out
+*.gch
+*.dSYM/
+compile_commands.json
+*.so
+sample
+*.o
