@@ -1,0 +1,3 @@
+[] create tests with test vectors for addressess
+[] generate things from master key and not from seed (need to figure out how to create HDNode from master key)
+[] research if we should slim down trezor lib
