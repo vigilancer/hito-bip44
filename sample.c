@@ -49,4 +49,10 @@ main(int argc, char** argv)
   }
   putchar('\n');
 
+
+  printf("-===============\n");
+
+  char xpriv[112];
+  bip44_seed_to_master(seed, xpriv);
+  printf("private key of master node from previous mnemonic: \n%s\n", xpriv);
 }

@@ -102,3 +102,15 @@ void bip44_path_to_address(uint8_t *seed, Bip44HDPath path,
 void bip44_mnemonic_to_seed(char * mnemonic, uint8_t seed_out[64]) {
   mnemonic_to_seed(mnemonic, "", seed_out, NULL);
 }
+
+void bip44_seed_to_master(uint8_t seed[64], char xpriv_out[112]) {
+  HDNode node;
+  hdnode_from_seed(seed, 512 / 8, SECP256K1_NAME, &node);
+  hdnode_serialize_private(
+      &node,
+      0,
+      VERSION_PRIVATE_MAIN,
+      xpriv_out,
+      112
+  );
+}

@@ -44,5 +44,7 @@ void bip44_path_to_address(uint8_t *seed, Bip44HDPath path,
  */
 void bip44_mnemonic_to_seed(char * mnemonic, uint8_t seed_out[64]);
 
+void bip44_seed_to_master(uint8_t seed[64], char xpriv_out[112]);
+
 // todo (ae): move to separate header for testing. ex.: bip44_test.h
 const uint8_t *fromhex(const char *str);
