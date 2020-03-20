@@ -1,5 +1,6 @@
 //usr/bin/clang "$0" && exec ./a.out "$@"; exit
 
+#include "curves.h"
 #include <assert.h>
 #include <ctype.h>
 #include <iso646.h>
@@ -15,6 +16,7 @@
 int
 main(int argc, char** argv)
 {
+  int n;
   HDNode node_test2;
   char *seed_test2_text =
       "4b381541583be4423346c643850da4b320e46a87ae3d2a4e6da11eba819cd4acba45d239"
@@ -27,32 +29,33 @@ main(int argc, char** argv)
   const size_t buflen = 128;
   char buf[buflen + 1];
 
-  bip44_path_to_address(seed_test2, path, buf, buflen);
+  uint32_t address_code = 0; // 0 = pubkey hash. 0x6f = testnet pubkey hash
 
+  bip44_path_to_address(seed_test2, &path, buf, buflen, address_code);
 
-  printf("{} %s\n", buf);
+  printf("44'/0'/0'/0/2 address: %s\n", buf);
 
-  printf("you can generate bunch of addresses for this seed: https://iancoleman.io/bip39/\n");
+  uint8_t node_public_key_raw[PUBLIC_KEY_LENGTH];
+  uint8_t node_private_key_raw[PRIVATE_KEY_LENGTH];
+  char node_private_key_wif[MAX_WIF_SIZE];
 
-  printf("-===============\n");
+  bip44_hdkey_public_raw(seed_test2, &path, node_public_key_raw);
+  bip44_hdkey_private_raw(seed_test2, &path, node_private_key_raw);
+  bip44_hdkey_private_wif(seed_test2, &path, node_private_key_wif);
 
-  char *mnemonic = "abandon abandon abandon abandon abandon abandon abandon "
-                   "abandon abandon abandon abandon about";
-  uint8_t seed[64];
-  bip44_mnemonic_to_seed(mnemonic, seed);
-
-  printf("mnemonic: %s\n", mnemonic);
-  printf("seed: ");
-  int n;
-  for(n=0; n< SHA512_DIGEST_LENGTH; n++) {
-    printf("%02x", seed[n]);
+  printf("public key (raw): ");
+  for (n = 0; n < PUBLIC_KEY_LENGTH; n++) {
+    printf("%02x", node_public_key_raw[n]);
   }
   putchar('\n');
 
+  printf("private key (raw): ");
+  for (n = 0; n < PRIVATE_KEY_LENGTH; n++) {
+    printf("%02x", node_private_key_raw[n]);
+  }
+  putchar('\n');
+  printf("private key (WIF): %s\n", node_private_key_wif);
 
-  printf("-===============\n");
+  printf("\nyou can generate bunch of addresses with keys from this seed here: https://iancoleman.io/bip39/\n");
 
-  char xpriv[112];
-  bip44_seed_to_master(seed, xpriv);
-  printf("private key of master node from previous mnemonic: \n%s\n", xpriv);
 }
